@@ -4,95 +4,242 @@
   <meta charset="UTF-8" />
   <title>VHSD Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #3b1b6a, #050008);
-      color: #fff;
+    :root{
+      --bg: #050008;
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.10);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --primary: #7c3aed;
+      --glow: 0 0 18px rgba(124,58,237,.35);
     }
-    header {
-      padding: 20px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 22px;
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(700px 450px at 90% 10%, rgba(34,211,238,.10), transparent 55%),
+        var(--bg);
+      color: var(--text);
     }
-    .container {
-      padding: 20px;
-      max-width: 900px;
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(5,0,8,.72);
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .header-inner{
+      max-width: 980px;
       margin: auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
     }
-    .category {
-      margin-top: 30px;
+
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,211,238,.55));
+      box-shadow: var(--glow);
+      flex: 0 0 auto;
     }
-    .products {
-      display: grid;
+
+    .brand h1{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .brand p{
+      margin:2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .container{
+      max-width: 980px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .hero{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 0 0 1px rgba(124,58,237,.10);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124,58,237,.35);
+      background: rgba(124,58,237,.12);
+      color: #e9d5ff;
+      font-size: 12px;
+    }
+
+    h2{
+      margin: 12px 0 6px;
+      font-size: 20px;
+    }
+
+    .muted{ color: var(--muted); }
+
+    .category{
+      margin-top: 22px;
+    }
+
+    .grid{
+      display:grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
+      gap: 14px;
+      margin-top: 12px;
     }
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 15px;
-      box-shadow: 0 0 15px rgba(138,43,226,0.35);
+
+    .card{
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 0 0 1px rgba(124,58,237,.08);
     }
-    .price {
+    .card:hover{
+      border-color: rgba(124,58,237,.42);
+      box-shadow: 0 0 0 1px rgba(124,58,237,.18), var(--glow);
+    }
+
+    /* CAPA RETANGULAR */
+    .cover{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 10px;
+      background: rgba(0,0,0,0.25);
+    }
+
+    .game-title{
+      margin: 6px 0 0;
+      font-size: 16px;
+    }
+
+    .price{
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 800;
       margin: 8px 0;
       color: #c084fc;
     }
-    .btn {
-      display: block;
-      text-align: center;
+
+    .btn{
+      display:block;
+      text-align:center;
       margin-top: 10px;
-      padding: 10px;
+      padding: 10px 12px;
       background: linear-gradient(135deg, #7c3aed, #9333ea);
       color: white;
-      text-decoration: none;
+      text-decoration:none;
       border-radius: 12px;
-      font-weight: bold;
+      font-weight: 800;
+      box-shadow: var(--glow);
+    }
+    .btn:hover{ filter: brightness(1.05); }
+
+    footer{
+      padding: 18px;
+      text-align:center;
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
     }
   </style>
 </head>
+
 <body>
-
-<header>💜 VHSD Store</header>
-
-<div class="container">
-
-  <div class="category">
-    <h2>Xbox One e Series</h2>
-    <div class="products">
-      <div class="card">
-        <h3>Deadpool</h3>
-        <div class="price">R$ 30,00</div>
-        <a class="btn" href="https://wa.me/5533998159069?text=Quero%20comprar%20Deadpool%20Xbox%20One%20Series">Comprar no WhatsApp</a>
+  <header>
+    <div class="header-inner">
+      <div class="logo"></div>
+      <div class="brand">
+        <h1>VHSD Store</h1>
+        <p>Catálogo digital • Finalização via WhatsApp</p>
       </div>
-      <div class="card">
-        <h3>Naruto Storm Connections</h3>
-        <div class="price">R$ 30,00</div>
-        <a class="btn" href="https://wa.me/5533998159069?text=Quero%20comprar%20Naruto%20Storm%20Connections">Comprar no WhatsApp</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <div class="badge">⚡ Compra rápida</div>
+      <h2>Escolha, veja o preço e finalize no WhatsApp</h2>
+      <p class="muted">Produtos digitais • Estoque ilimitado • Atendimento direto</p>
+    </div>
+
+    <!-- XBOX ONE / SERIES -->
+    <div class="category">
+      <h2>Xbox One e Series</h2>
+      <div class="grid">
+
+        <div class="card">
+          <img class="cover" src="https://tse2.mm.bing.net/th/id/OIP.l5xNqKowxDsU7LUy1Xf9LQHaJk?pid=Api" alt="Deadpool (Xbox One)" />
+          <h3 class="game-title">Deadpool</h3>
+          <div class="price">R$ 30,00</div>
+          <a class="btn" href="https://wa.me/5533998159069?text=Olá!%20Quero%20comprar%20na%20VHSD%20Store:%0A-%20Deadpool%20(Xbox%20One%20e%20Series)%20—%20R$%2030,00%0A%0ATotal:%20R$%2030,00%0APagamento:%20Pix%0AEntrega:%20Digital" target="_blank" rel="noreferrer">
+            Comprar no WhatsApp
+          </a>
+        </div>
+
+        <div class="card">
+          <img class="cover" src="https://tse2.mm.bing.net/th/id/OIP.TQlgAO1nvuaNxSyXWodC9AHaJ4?pid=Api" alt="Naruto Storm Connections (Xbox)" />
+          <h3 class="game-title">Naruto Storm Connections</h3>
+          <div class="price">R$ 30,00</div>
+          <a class="btn" href="https://wa.me/5533998159069?text=Olá!%20Quero%20comprar%20na%20VHSD%20Store:%0A-%20Naruto%20Storm%20Connections%20(Xbox%20One%20e%20Series)%20—%20R$%2030,00%0A%0ATotal:%20R$%2030,00%0APagamento:%20Pix%0AEntrega:%20Digital" target="_blank" rel="noreferrer">
+            Comprar no WhatsApp
+          </a>
+        </div>
+
       </div>
+    </div>
+
+    <!-- XBOX 360 -->
+    <div class="category">
+      <h2>Xbox 360</h2>
+      <div class="grid">
+
+        <div class="card">
+          <img class="cover" src="https://tse2.mm.bing.net/th/id/OIP.aZdiJuKf21QKaUqrDYgbCQHaHa?pid=Api" alt="Naruto Storm (Xbox 360)" />
+          <h3 class="game-title">Naruto Storm R</h3>
+          <div class="price">R$ 25,90</div>
+          <a class="btn" href="https://wa.me/5533998159069?text=Olá!%20Quero%20comprar%20na%20VHSD%20Store:%0A-%20Naruto%20Storm%20R%20(Xbox%20360)%20—%20R$%2025,90%0A%0ATotal:%20R$%2025,90%0APagamento:%20Pix%0AEntrega:%20Digital" target="_blank" rel="noreferrer">
+            Comprar no WhatsApp
+          </a>
+        </div>
+
+        <div class="card">
+          <img class="cover" src="https://tse2.mm.bing.net/th/id/OIP.qj2wGguqF2-NfuK2W7q8OwHaJO?pid=Api" alt="FIFA 19 (capa)" />
+          <h3 class="game-title">FIFA 19</h3>
+          <div class="price">R$ 15,90</div>
+          <a class="btn" href="https://wa.me/5533998159069?text=Olá!%20Quero%20comprar%20na%20VHSD%20Store:%0A-%20FIFA%2019%20(Xbox%20360)%20—%20R$%2015,90%0A%0ATotal:%20R$%2015,90%0APagamento:%20Pix%0AEntrega:%20Digital" target="_blank" rel="noreferrer">
+            Comprar no WhatsApp
+          </a>
+        </div>
+
+      </div>
+      <p class="muted" style="margin-top:10px; font-size:12px;">
+        Nota: as imagens são só para teste. Se alguma não carregar, me avise que eu troco por outra fonte.
+      </p>
     </div>
   </div>
 
-  <div class="category">
-    <h2>Xbox 360</h2>
-    <div class="products">
-      <div class="card">
-        <h3>Naruto Storm R</h3>
-        <div class="price">R$ 25,90</div>
-        <a class="btn" href="https://wa.me/5533998159069?text=Quero%20comprar%20Naruto%20Storm%20R%20Xbox%20360">Comprar no WhatsApp</a>
-      </div>
-      <div class="card">
-        <h3>FIFA 19</h3>
-        <div class="price">R$ 15,90</div>
-        <a class="btn" href="https://wa.me/5533998159069?text=Quero%20comprar%20FIFA%2019%20Xbox%20360">Comprar no WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
-</div>
+  <footer>© VHSD Store • Catálogo de teste</footer>
 </body>
 </html>
