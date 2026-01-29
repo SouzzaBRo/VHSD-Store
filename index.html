@@ -122,14 +122,16 @@
 
     /* CAPA RETANGULAR */
     .cover{
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.10);
-      margin-bottom: 10px;
-      background: rgba(0,0,0,0.25);
-    }
+  width: 100%;
+  height: 220px;              /* todas as capas com mesmo tamanho */
+  object-fit: contain;       /* mostra a capa inteira */
+  background-color: #0b0612; /* fundo escuro elegante */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 10px;
+  padding: 10px;             /* espaço interno p/ capas menores */
+}
+
 
     .game-title{
       margin: 6px 0 0;
